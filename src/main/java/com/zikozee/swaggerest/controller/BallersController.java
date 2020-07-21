@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.InetSocketAddress;
+import java.text.ParseException;
 import java.util.List;
 
 @Api(description = "This is the required POWERBALL controller")
@@ -56,7 +57,7 @@ public class BallersController {
     @ApiOperation(value = "This will save a new powerball draw ", notes = "You don't pass in id as it will be generated automatically, other fields mandatory")
     @PostMapping("/ballers")
     @ResponseStatus(HttpStatus.CREATED)
-    public BallersDTO saveOrUpdate(BallersDTO ballersDTO){
+    public BallersDTO saveOrUpdate(BallersDTO ballersDTO) throws ParseException {
         return service.saveOrUpdate(ballersDTO);
     }
 }

@@ -1,6 +1,5 @@
 package com.zikozee.swaggerest.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -31,7 +29,8 @@ public class BallersDTO implements Serializable {
     private int ball_6;
 
     @ApiModelProperty(value = "This is the last input, date", required = true)
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private Date created_date;
+//    @JsonFormat(pattern="yyyy-MM-dd")
+//    @Temporal(TemporalType.DATE)
+    private String created_date;
 
 }
