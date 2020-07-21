@@ -4,6 +4,7 @@ import com.zikozee.swaggerest.Repository.BallRepository;
 import com.zikozee.swaggerest.exception.BallersNotFoundException;
 import com.zikozee.swaggerest.model.Ballers;
 import com.zikozee.swaggerest.model.BallersDTO;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +15,10 @@ import java.util.*;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class BallServiceImpl implements BallService {
 
     private final BallRepository repository;
-
-    public BallServiceImpl(BallRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     public List<BallersDTO> allBalls() {
