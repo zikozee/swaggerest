@@ -29,8 +29,9 @@ public class BallServiceImpl implements BallService {
 
     @Override
     public Ballers deleteBall(int id) {
+        Ballers oneBaller = oneBall(id);
         repository.deleteById(id);
-        return oneBall(id);
+        return oneBaller;
     }
 
     @Override

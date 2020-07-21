@@ -2,19 +2,18 @@ package com.zikozee.swaggerest.controller;
 
 import com.zikozee.swaggerest.model.Ballers;
 import com.zikozee.swaggerest.service.BallService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
 @RestController
+@AllArgsConstructor
 public class BallersController {
 
     private final BallService service;
 
-    public BallersController(BallService service) {
-        this.service = service;
-    }
-
+    //SWAGGER PATH NOW:::: http://localhost:8088/swagger-ui/
     @GetMapping("/ballers")
     public Set<Ballers> getBallers(){
         return service.allBalls();
