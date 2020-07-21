@@ -1,13 +1,12 @@
 package com.zikozee.swaggerest.service;
 
-import com.zikozee.swaggerest.model.Ballers;
 import com.zikozee.swaggerest.model.BallersDTO;
 
-import java.util.Set;
+import java.util.List;
 
 public interface BallService {
-    Set<Ballers> allBalls();
-    BallersDTO oneBall(int id);
-    BallersDTO deleteBall(int id);
+    List<BallersDTO> allBalls();
+    BallersDTO oneBall(long id);
+    BallersDTO deleteBall(long id);
     BallersDTO saveOrUpdate(BallersDTO ballersDTO);
 }

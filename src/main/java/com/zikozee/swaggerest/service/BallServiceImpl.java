@@ -6,7 +6,9 @@ import com.zikozee.swaggerest.model.Ballers;
 import com.zikozee.swaggerest.model.BallersDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -19,14 +21,14 @@ public class BallServiceImpl implements BallService {
     }
 
     @Override
-    public Set<Ballers> allBalls() {
+    public List<BallersDTO> allBalls() {
         Set<Ballers> myBalls = new HashSet<>();
         repository.findAll().forEach(myBalls::add);
-        return myBalls;
+        return utilityConverterList(myBalls);
     }
 
     @Override
-    public BallersDTO oneBall(int id) {
+    public BallersDTO oneBall(long id) {
         Ballers ballers =repository.findById(id).orElse(null);
         if(ballers == null){
             throw new BallersNotFoundException("Record not found");
@@ -35,7 +37,7 @@ public class BallServiceImpl implements BallService {
     }
 
     @Override
-    public BallersDTO deleteBall(int id) {
+    public BallersDTO deleteBall(long id) {
         BallersDTO oneBallerDTO = oneBall(id);
         repository.deleteById(id);
         return oneBallerDTO;
@@ -64,5 +66,20 @@ public class BallServiceImpl implements BallService {
                 .ball_5(ballers.getBall_5())
                 .ball_6(ballers.getBall_6())
                 .created_date(ballers.getCreated_date()).build();
+    }
+
+    private List<BallersDTO> utilityConverterList(Set<Ballers> ballersSet){
+        List<BallersDTO> ballersDTOS =  new ArrayList<>();
+            for(Ballers ballers: ballersSet){
+                ballersDTOS.add(BallersDTO.builder()
+                        .ball_1(ballers.getBall_1())
+                        .ball_2(ballers.getBall_2())
+                        .ball_3(ballers.getBall_3())
+                        .ball_4(ballers.getBall_4())
+                        .ball_5(ballers.getBall_5())
+                        .ball_6(ballers.getBall_6())
+                        .created_date(ballers.getCreated_date()).build());
+            }
+       return ballersDTOS;
     }
 }

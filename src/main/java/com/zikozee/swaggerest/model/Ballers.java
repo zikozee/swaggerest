@@ -18,7 +18,7 @@ public class Ballers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private int ball_1;
     private int ball_2;
