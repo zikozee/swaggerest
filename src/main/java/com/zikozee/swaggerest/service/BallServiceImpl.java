@@ -2,6 +2,7 @@ package com.zikozee.swaggerest.service;
 
 import com.zikozee.swaggerest.Repository.BallRepository;
 import com.zikozee.swaggerest.exception.BallersNotFoundException;
+import com.zikozee.swaggerest.exception.DateException;
 import com.zikozee.swaggerest.model.Ballers;
 import com.zikozee.swaggerest.model.BallersDTO;
 import lombok.AllArgsConstructor;
@@ -46,7 +47,9 @@ public class BallServiceImpl implements BallService {
 
     @Override
     public BallersDTO saveOrUpdate(BallersDTO ballersDTO) throws ParseException {
-
+        if(!ballersDTO.getCreated_date().matches("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$")){
+            throw new DateException("date format is wrong");
+        }
 
         Ballers ballers = Ballers.builder()
                 .ball_1(ballersDTO.getBall_1())

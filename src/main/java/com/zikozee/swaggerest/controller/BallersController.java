@@ -57,7 +57,7 @@ public class BallersController {
     @ApiOperation(value = "This will save a new powerball draw ", notes = "You don't pass in id as it will be generated automatically, other fields mandatory")
     @PostMapping("/ballers")
     @ResponseStatus(HttpStatus.CREATED)
-    public BallersDTO saveOrUpdate(BallersDTO ballersDTO) throws ParseException {
+    public BallersDTO saveOrUpdate(@RequestBody BallersDTO ballersDTO) throws ParseException {
         return service.saveOrUpdate(ballersDTO);
     }
 }
