@@ -1,9 +1,22 @@
-version: 2.1
-
-orbs:
-  maven: circleci/maven@0.0.12
-
+version: 2 # use CircleCI 2.0
+jobs: # a collection of steps
+  build:
+    # Remove if parallelism is not desired
+    parallelism: 2
+    environment:
+      # Configure the JVM and Gradle to avoid OOM errors
+      _JAVA_OPTIONS: "-Xmx3g"
+      GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
+    docker: # run the steps with Docker
+      - image: circleci/jdk11 # ...with this image as the primary container; this is where all `steps` will run
+      - image: circleci/mysql:8
+        environment:
+          MYSQL_ROOT_PASSWORD: xcmens2##
+          MYSQL_DATABASE: powerball
+          MYSQL_USER: springhbstudent
+          MYSQL_PASSWORD: springhbstudent
 workflows:
-  maven_test:
+  version: 2
+  workflow:
     jobs:
-      - maven/test # checkout, build, test, and upload test results
+    - build 
